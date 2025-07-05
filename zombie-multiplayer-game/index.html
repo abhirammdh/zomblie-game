@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie Survival Multiplayer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="menu" class="screen active">
+        <div class="menu-container">
+            <h1>🧟 ZOMBIE SURVIVAL 🧟</h1>
+            <div class="menu-section">
+                <input type="text" id="playerName" placeholder="Enter your name" maxlength="15">
+                <div class="player-customization">
+                    <h3>Customize Your Soldier</h3>
+                    <div class="color-picker">
+                        <label>Uniform Color:</label>
+                        <input type="color" id="uniformColor" value="#4a5d23">
+                    </div>
+                    <div class="color-picker">
+                        <label>Helmet Color:</label>
+                        <input type="color" id="helmetColor" value="#2d3d1a">
+                    </div>
+                </div>
+                <div class="room-section">
+                    <input type="text" id="roomId" placeholder="Enter Room ID">
+                    <button id="joinRoom">Join Room</button>
+                    <button id="createRoom">Create New Room</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="lobby" class="screen">
+        <div class="lobby-container">
+            <h2>Room: <span id="currentRoomId"></span></h2>
+            <div class="players-list">
+                <h3>Players in Room:</h3>
+                <ul id="playersList"></ul>
+            </div>
+            <button id="startGame">Start Game</button>
+            <button id="leaveRoom">Leave Room</button>
+        </div>
+    </div>
+
+    <div id="game" class="screen">
+        <div class="game-ui">
+            <div class="top-ui">
+                <div class="wave-info">
+                    <span>Wave: <span id="currentWave">1</span>/6</span>
+                    <span>Zombies Left: <span id="zombiesLeft">0</span></span>
+                </div>
+                <div class="players-info" id="playersInfo"></div>
+            </div>
+            <canvas id="gameCanvas" width="1200" height="800"></canvas>
+            <div class="bottom-ui">
+                <div class="health-bar">
+                    <div class="health-fill" id="healthFill"></div>
+                    <span id="healthText">100/100</span>
+                </div>
+                <div class="weapon-info">
+                    <span id="currentWeapon">Pistol</span>
+                    <span id="ammoCount">12/∞</span>
+                </div>
+                <div class="controls-info">
+                    <span>WASD: Move | Mouse: Aim & Shoot | 1,2,3: Switch Weapons</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOver" class="screen">
+        <div class="game-over-container">
+            <h2 id="gameOverTitle">Game Over</h2>
+            <p id="gameOverMessage"></p>
+            <div class="game-over-buttons">
+                <button id="spectateBtn">Spectate</button>
+                <button id="quitBtn">Quit to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
